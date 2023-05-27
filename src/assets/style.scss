@@ -1,3 +1,4 @@
+@import "./mixin";
 @import "./sidebar";
 @import "./plugin";
 
@@ -51,4 +52,8 @@ body {
 .main-container {
   display: flex;
   gap: 24px;
+  @include responsive(mobile) {
+    flex-direction: column;
+    gap: 0;
+  }
 }
