@@ -6,6 +6,7 @@ import Tabs from "../pages/tabs";
 import { getData } from "../services/tabsServices";
 import useDataContext from "../hooks/useDataContext";
 import { TTab } from "../types";
+import NotFound from "../pages/404";
 
 const Layout = () => {
   const [tabs, setTabs] = useState<TTab[]>([]);
@@ -53,6 +54,10 @@ const Layout = () => {
               data={data}
             />
           }
+        />
+        <Route
+          path="*"
+          element={<NotFound tabs={tabs} setCurrentTab={setCurrentTab} />}
         />
       </Routes>
     </div>
