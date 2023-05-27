@@ -1,14 +1,38 @@
-import { Routes, Route } from "react-router-dom";
+import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { TData } from "./types";
+
 import "./assets/style.scss";
-import HomePage from "./pages";
-import Tabs from "./pages/tabs";
+import MemoizedLayout from "./layout";
+
+type TContext = {
+  data: TData | null;
+  setData: Dispatch<SetStateAction<TData | null>>;
+  setSidebarLoading: Dispatch<SetStateAction<boolean>>;
+  setContentLoading: Dispatch<SetStateAction<boolean>>;
+  sidebarLoading: boolean;
+  contentLoading: boolean;
+} | null;
+
+export const DataContext = createContext<TContext>(null);
+
 function App() {
+  const [data, setData] = useState<TData | null>(null);
+  const [sidebarLoading, setSidebarLoading] = useState(true);
+  const [contentLoading, setContentLoading] = useState(true);
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/tabs/:id" element={<Tabs />} />
-      </Routes>
+      <DataContext.Provider
+        value={{
+          data,
+          setData,
+          sidebarLoading,
+          setSidebarLoading,
+          setContentLoading,
+          contentLoading,
+        }}
+      >
+        <MemoizedLayout />
+      </DataContext.Provider>
     </div>
   );
 }

@@ -1,6 +1,7 @@
-.content {
+.plugins {
   width: 80%;
   padding: 20px;
+  position: relative;
   .main-title {
     font-size: 25px;
     font-weight: bold;
@@ -84,10 +85,10 @@
       }
       .plugin-state {
         font-size: 12px;
-        &.active {
+        &.Allowed {
           color: #4bd763;
         }
-        &.blocked {
+        &.Blocked {
           color: #c63040;
         }
       }
